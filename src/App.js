@@ -4,7 +4,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import './App.css';
 import {AppBar, Box, Container, IconButton, MenuItem, Toolbar, Typography} from "@material-ui/core";
 
-const apiKey = '6433eed6642d7a2a635b5620b5e4d4a9';
+// const apiKey = '6433eed6642d7a2a635b5620b5e4d4a9';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,15 +21,17 @@ const useStyles = makeStyles((theme) => ({
 function App() {
     const classes = useStyles();
     let [city, setCity] = useState('');
-    let [data, setData] = useState({"qwe": '123', "ert": 'wort'});
-
-
-    const getWeather = async () => {
-        const response = await fetch(`api.openweathermap.org/data/2.5/weather?q=Kiev,ua&appid=${apiKey}&units=metric`);
-        debugger
-        const data = await response.json();
-        console.log(data);
+    const data = {
+        date: 'Сегодня',
+        temperature: '+15'
     }
+
+    // const getWeather = async () => {
+    //     const response = await fetch(`api.openweathermap.org/data/2.5/weather?q=Kiev,ua&appid=${apiKey}&units=metric`);
+    //     debugger
+    //     const data = await response.json();
+    //     console.log(data);
+    // }
 
     const onCityChange = (event) => {
         setCity(event.target.value)
@@ -47,14 +49,14 @@ function App() {
                                type="search"
                                variant="outlined"/>
                     <IconButton color="inherit"
-                                className={classes.menuButton}
-                                onClick={getWeather}>
+                                className={classes.menuButton}>
+                                {/*onClick={getWeather}>*/}
                         Получить погоду
                     </IconButton>
                 </Toolbar>
                 <Box>
-                    <MenuItem >{data.qwe}</MenuItem >
-                    <MenuItem >{data.ert}</MenuItem >
+                    <MenuItem >{data.date}</MenuItem >
+                    <MenuItem >{data.temperature}</MenuItem >
                 </Box>
             </Container>
         </AppBar>
